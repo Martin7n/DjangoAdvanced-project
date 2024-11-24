@@ -1,0 +1,64 @@
+{% extends 'common/base_template.html' %}
+
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+<section class="what_we_do_section layout_padding" style="background-color: #343a40; color: white;">
+  <section class="container" style="padding-bottom: 5em">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <h1 class="mt-2">
+          <h2>Create a New Meal</h2>
+        </h1>
+        <hr class="mt-0 mb-4">
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="form-group">
+            {{ form.description }}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.calories.id_for_label }}">Calories (Select a value):</label>
+            <input type="range" id="{{ form.calories.id_for_label }}"
+                   name="{{ form.calories.name }}"
+                   min="200" max="2000" step="200"
+                   value="{{ form.calories.value }}"
+                   oninput="updateCalorieValue(this)"
+                   class="calorie-slider form-control-range">
+            <span id="calorie-display">{{ form.calories.value }} Calories</span>
+          </div>
+
+          <div class="form-group">
+            {{ form.date }}
+          </div>
+
+          <div class="form-group">
+            {{ form.type }}
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+</section>
+
+<script type="text/javascript">
+  // Function to update the displayed calorie value based on the slider
+  function updateCalorieValue(slider) {
+    var calorieDisplay = document.getElementById('calorie-display');
+    calorieDisplay.innerText = slider.value + " Calories";
+  }
+
+  // Run this on page load to set initial value
+  window.onload = function() {
+    updateCalorieValue(document.querySelector('.calorie-slider'));
+  };
+</script>
+
+{% endblock %}
