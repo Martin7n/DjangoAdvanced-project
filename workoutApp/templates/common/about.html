@@ -1,0 +1,49 @@
+{% extends 'common/base_template.html' %}
+{%  load static %}
+
+{%  block content %}
+
+  <!-- About Us Section -->
+  <section class="who_section layout_padding" style="background-color: #2a2a2a; color: #f4f4f4;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="img-box">
+            <img src="{% static 'images/about_hah.webp' %}" alt="About Us Image" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2 class="text-light">
+                About Us
+              </h2>
+            </div>
+            <p class="text-light">
+              At NoCardio, we are driven by a passion for both web development and fitness. Our mission is to combine these two passions to create powerful, user-friendly platforms that help individuals and communities get stronger, healthier, and more active. Whether you're a beginner or an experienced athlete, we believe that everyone deserves the tools and resources to improve their fitness and achieve their goals.
+            </p>
+            <p class="text-light">
+              We are a group of enthusiasts, each with a unique background in web development and fitness. Our founder, [Your Name], is an avid web developer with a deep love for sports and fitness. Combining these two worlds, we aim to build innovative tools and solutions that empower people to take control of their fitness journey.
+            </p>
+            <p class="text-light">
+              We believe in the power of technology to transform lives, and we're passionate about helping others achieve their fitness goals. Here’s what sets us apart:
+            </p>
+            <ul class="text-light">
+              <li><strong>Expertise in Web Development:</strong> With years of experience in web development, we create intuitive and engaging platforms that make tracking workouts and progress easy and fun.</li>
+              <li><strong>Passion for Fitness:</strong> We understand the challenges and rewards of getting fit. Our programs and tools are designed with you in mind – from simple workout trackers to advanced performance analytics.</li>
+              <li><strong>Helping You Get Stronger:</strong> Our goal is simple: to provide tools that empower you to push your limits and become the best version of yourself. No matter where you're starting from, we're here to help you get stronger every day!</li>
+            </ul>
+            <div>
+              <a href="{%  url 'contacts' %}" class="btn btn-primary">
+                Join Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End About Us Section -->
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{%  extends 'common/base_template.html' %}
+{% load static %}
+
+
+
+{% block content %}
+  <h2 class="text-center mb-4">All User Profiles</h2>
+
+ {% include 'users/management_sticky_warning.html' %}
+
+    <!-- Profiles List -->
+    <div class="row">
+      {% for user in users %}
+        <div class="col-md-4 mb-4">
+          <div class="card" style="background-color: #f8f9fa; border: 1px solid #ced4da;">
+            <div class="card-body">
+              <h5 class="card-title text-dark">{{ user.username }}</h5>
+              <p class="card-text">
+                <strong>First Name:</strong> {{ user.first_name|default:"Not presented" }} <br>
+                <strong>Last Name:</strong> {{ user.last_name|default:"Not presented" }} <br>
+                <strong>Email:</strong> {{ user.email }}
+                    <p><strong>Workouts:</strong> {{ user.workout_count }} workouts</p>
+              </p>
+
+              <a href="{% url 'view-profile' pk=user.pk %}" class="btn btn-primary btn-sm">View Profile</a>
+              <a href="{% url 'delete-profile' pk=user.pk %}" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Are you sure you want to delete this profile?');">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+

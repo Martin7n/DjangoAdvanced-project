@@ -1,0 +1,57 @@
+{%  extends 'common/base_template.html' %}
+{%  load static %}
+
+{% block content %}
+
+<!-- What We Do Section -->
+<section class="what_we_do_section layout_padding" style="background-color: #343a40; color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <!-- Left Column: Introduction -->
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2 style="color: #f8f9fa;">What We Do</h2>
+                    </div>
+                    <p style="color: #d1d1d1;">
+                        At <b>NoCardio</b>, we blend the world of technology and fitness to bring you the best of both. Our team is made up of passionate developers and fitness enthusiasts who are dedicated to helping you become the strongest version of yourself—both mentally and physically.
+                    </p>
+                    <p style="color: #d1d1d1;">
+                        We focus on programming that powers your fitness goals, from personalized workout plans to tracking your progress in the most efficient way. Whether you're a beginner or an experienced athlete, our mission is to give you the tools and knowledge you need to improve your strength and health.
+                    </p>
+                    <p style="color: #d1d1d1;">
+                        We excel in coding to help create smart solutions, but it doesn't stop there—we want to see you get stronger too. We combine cutting-edge technology with training methods that will transform your body and mind.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Humor / Irony -->
+            <div class="col-md-6">
+                <div class="img-box">
+                    <img style="width: 50%; height: auto;" src="{% static 'images/strange_picture.png' %}" alt="Lifting with coding" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="detail-box">
+                    <h4 class="text-center text-muted" style="color: #d1d1d1;">Our Goal</h4>
+                    <p class="text-center" style="color: #d1d1d1;">
+                        In all seriousness, our goal is simple: we make smart people stronger.
+                        We might not be able to literally lift and move the planet just yet, but we can help you get strong enough to *think* you could.
+                        With our advanced programming skills and a focus on fitness, we’re here to help you optimize your workouts, track your progress, and become your best self.
+                    </p>
+                    <p class="text-center" style="color: #d1d1d1;">
+                        Join us as we code, lift, and keep pushing towards a healthier, stronger future—one rep, one line of code at a time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End What We Do Section -->
+
+
+
+{% endblock %}

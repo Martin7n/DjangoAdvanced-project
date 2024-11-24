@@ -1,0 +1,129 @@
+{% extends 'common/base_template.html' %}
+{%  load static %}
+
+
+    <body>
+
+
+{% block content %}
+
+
+    <!-- slider section -->
+    <section class="slider_section position-relative">
+      <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col">
+                  <div class="detail-box">
+                    <div>
+                      <h2>
+                        welcome to
+
+                      </h2>
+                      <h1>
+                        My <b>NoCardio</b> project
+                      </h1>
+                      <p>
+                          A simple project dedicated to something old and something new.
+
+                      </p>
+                      <div class="">
+                        <a href="{%  url 'contacts' %}">
+                          Contact us
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col">
+                  <div class="detail-box">
+                    <div>
+
+                      <p>
+                         Finishing the Web course in SoftUni.
+                      </p>
+                      <div class="">
+                        <a href="">
+                          Contact us
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col">
+                  <div class="detail-box">
+                    <div>
+
+                      <p>
+                        and probably a useful workout log. :)
+                      </p>
+                      <div class="">
+                        <a href="">
+                          Contact us
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+
+{% include 'common/options_list.html' %}
+
+
+
+  <script type="text/javascript" src="{%  static 'js/jquery-3.4.1.min.js'%}"></script>
+  <script type="text/javascript" src="{%  static 'js/bootstrap.js'%}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- owl carousel script
+    -->
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 0,
+      navText: [],
+      center: true,
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        1000: {
+          items: 3
+        }
+      }
+    });
+  </script>
+  <!-- end owl carousel script -->
+
+     {%  endblock %}
+
+ </body>
+
+</html>

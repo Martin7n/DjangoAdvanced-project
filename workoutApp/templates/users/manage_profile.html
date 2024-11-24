@@ -1,0 +1,33 @@
+{%  extends 'common/base_template.html' %}
+
+
+
+{% block content %}
+
+    {% include 'users/management_sticky_warning.html' %}
+
+
+ <div class="card" style="background-color: #f8f9fa; border: 1px solid #ced4da;">
+    <h2 class="text-center">Profile of {{ user.username }}</h2>
+
+    <p><strong>First Name:</strong> {{ user.first_name|default:"Not presented" }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name|default:"Not presented" }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+     <p><strong>Workouts:</strong> {{ workout_count}}
+
+
+    <p><strong>Profile Picture:</strong><br>
+      <img src="{% if profile_picture  %}{{ profile_picture.url }}{% else %}{{ MEDIA_URL }}profiles/default.jpg{% endif %}" alt="Profile Picture" width="100">
+    </p>
+         <br>
+
+
+    <a href="{% url 'delete-profile' pk=user.pk %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this profile?');">Delete Profile</a>
+  </div>
+  </div>
+
+{% endblock %}
+
+
+
+

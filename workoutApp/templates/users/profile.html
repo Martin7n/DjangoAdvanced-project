@@ -1,0 +1,46 @@
+{%  extends 'common/base_template.html' %}
+{% load static %}
+{% load  custom_filters %}
+{% load crispy_forms_field %}
+
+
+
+{% block content %}
+
+
+    <section class="what_we_do_section layout_padding" style="background-color: #343a40; color: #f8f9fa;">
+            <section class="container" style="width: 70%; padding-bottom: 5em">
+                 <div class="row justify-content-center">
+                    <div class="col-8">
+                        <h1 class="mt-2">  <h2>Welcome, {{ user.username }}!</h2></h1>
+                    <hr class="mt-0 mb-4">
+
+
+
+
+      <p><strong>First Name:</strong> {{ user.first_name|default_if_empty:"No first name provided" }}</p>
+      <p><strong>Last Name:</strong> {{ user.last_name|default_if_empty:"No last name provided"  }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+{#      <p><strong>Trainer:</strong> {% if user.trainer %}Yes{% else %}No{% endif %}</p>#}
+
+
+                       <p><strong>Profile Picture:</strong><br> <img src="{% if user.profile.profile_picture  %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_profile.jpg' %}{% endif %}" alt="Profile Picture" width="100"></p>
+
+{#  {% if user.profile_picture %}#}
+{#    <p><strong>Profile Picture:</strong><br><img src="{{ user.profile_picture.url }}" alt="Profile Picture" width="200"></p>#}
+{#  {% else %}#}
+{#    <p><strong>Profile Picture:</strong><br><img src="{%  staticfiles 'profiles/de' %}" alt="Profile Picture" width="200"></p>#}
+{#  {% endif %}#}
+
+  <a href="{% url 'edit-profile' %}" class="btn btn-primary">Edit Profile</a>
+                        <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+
+
+                     </hr>
+                    </div>
+                 </div>
+         </section>
+    </section>
+
+
+{%  endblock %}
