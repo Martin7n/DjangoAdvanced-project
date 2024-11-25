@@ -1,0 +1,98 @@
+{% extends 'common/base_template.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container-fluid bg-dark text-white" style="min-height: 100vh; display: flex; flex-direction: column;">
+    <div class="container p-3 my-3 d-flex flex-column" style="flex-grow: 1;">
+
+        <h1 class="text-center mb-4">Add Exercise for Workout "{{ workout }}"</h1>
+
+        <div class="row" style="flex-grow: 1;">
+            <!-- Left Column: Saved data -->
+            <div class="col-md-6 col-12 d-flex flex-column" style="max-height: 100vh; overflow-y: auto; margin-bottom: 2em;">
+                <div class="bg-secondary p-3 rounded" style="flex-grow: 1;flex-shrink: 0">
+                    <h2>Current Workout</h2>
+
+
+{% for x, y in w.get_all.items %}
+            <li class="list-group-item bg-dark text-white border-0">
+                <strong>{{ x }}</strong>
+                <ol>
+                    {% for e in y %}
+                        <li>{{ e }}</li>
+                    {% endfor %}
+                </ol>
+            </li>
+        {% endfor %}
+                    <ul class="list-group">
+                        {% for x, y in get_all.items %}
+                            <li class="list-group-item bg-dark text-white border-0">
+                                <strong>{{ x }}</strong>
+                                <ol>
+                                    {% for e in y %}
+                                        <li>{{ e }}</li>
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Add Exercises -->
+            <div class="col-md-6 col-12 d-flex flex-column" style="max-height: 100vh; overflow-y: auto; padding-left: 15px; padding-right: 15px;">
+                <div class="bg-light p-3 rounded text-dark" style="flex-grow: 1;">
+                    <h2>Choose Exercise</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- xrx Form -->
+                        <div class="form-group">
+                            {{ exercise_form|crispy }}
+                        </div>
+
+                        <!-- R.S. formset -->
+                        <h3>Enter Sets, Reps, and Weight</h3>
+                        {{ reps_formset.management_form }}
+
+                        <div class="form-row">
+                            {% for form in reps_formset %}
+                                <div class="col-md-5 col-12 mb-3">
+                                    <div class="form-group">
+                                        {{ form.reps }}
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-12 mb-3">
+                                    <div class="form-group">
+                                        {{ form.weight }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Triple action buttons -->
+                        <button type="submit" name="save" class="btn btn-success btn-block mb-2">Save</button>
+                        <button type="submit" name="save_and_add" class="btn btn-primary btn-block">Save and Add Another</button>
+
+                    </form>
+
+                         <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="cancel" class="btn btn-danger">Cancel</button>
+                            </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

@@ -1,9 +1,8 @@
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
-from .views import RegisterView, custom_login_view, user_profile_view, CustomUserEditView, view_profile, delete_profile, \
+from .views import \
+    RegisterView, custom_login_view, user_profile_view, \
+    CustomUserEditView, view_profile, delete_profile, \
     view_all_profile, custom_logout
 
 urlpatterns = [

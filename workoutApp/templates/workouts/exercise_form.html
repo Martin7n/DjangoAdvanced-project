@@ -1,0 +1,42 @@
+{%  extends 'common/base_template.html' %}
+
+{% load crispy_forms_filters %}
+
+{%  load static %}
+
+{% block content %}
+    {% if request.user.is_staff %}
+    <section class="what_we_do_section layout_padding" style="background-color: #343a40; color: white;">
+  <section class="container" style="padding-bottom: 5em">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <h1 class="mt-2">
+
+        <hr class="mt-0 mb-4">
+  <h1>{% if object %}Edit Exercise{% else %}Create Exercise{% endif %}</h1>
+
+  <!-- Exercise Form -->
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form|crispy }}
+
+
+    <!-- Submit final Button -->
+    <button type="submit" class="btn btn-success">
+      {% if object %}Save Changes{% else %}Create Exercise{% endif %}
+    </button>
+  </form>
+
+  <!-- Cancel Button  -->
+  <a href="{% url 'exercise-list' %}" class="btn btn-secondary">Cancel</a>
+    </h1>
+
+      </div>
+    </div>
+  </section>
+</section>
+    {% else %}
+        <h2>Staff only section</h2>
+    {% endif %}
+{% endblock %}

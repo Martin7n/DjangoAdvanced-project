@@ -37,7 +37,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-MY_ADD_APPS = ['crispy_forms', "crispy_bootstrap4",
+MY_ADD_APPS = ['crispy_forms',
+               "crispy_bootstrap4",
                'workoutApp.workouts.apps.WorkoutsConfig',
                'workoutApp.nutrition.apps.NutritionConfig',
                'workoutApp.users.apps.UsersConfig'
