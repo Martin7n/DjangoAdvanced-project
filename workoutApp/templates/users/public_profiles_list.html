@@ -1,0 +1,65 @@
+
+
+{% extends 'common/base_template.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h3 class="mb-4">Public Profiles</h3>
+
+
+    <div class="list-group">
+        {% for user_profile in user_profiles %}
+        <a href="{% url 'repmax' pk=user_profile.user.pk %}" class="list-group-item list-group-item-action">
+            <div class="d-flex justify-content-between">
+                <h5>{{ user_profile.user.username }}</h5>
+                <span class="badge badge-info">Public</span>
+            </div>
+            <p><strong>Name:</strong> {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
+        </a>
+        {% empty %}
+            <p>No public profiles found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+   <div class="d-flex justify-content-center mt-4">
+                <nav>
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true">&laquo;</span>
+                            </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true">&raquo;</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                </nav>
+            </div>
+        </div>
+
+</div>
+{% endblock %}

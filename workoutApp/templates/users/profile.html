@@ -21,6 +21,8 @@
       <p><strong>First Name:</strong> {{ user.first_name|default_if_empty:"No first name provided" }}</p>
       <p><strong>Last Name:</strong> {{ user.last_name|default_if_empty:"No last name provided"  }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Public Profile:</strong> {{ user.profile.is_public|yesno:"Yes,No" }}</p>
+
 {#      <p><strong>Trainer:</strong> {% if user.trainer %}Yes{% else %}No{% endif %}</p>#}
 
 

@@ -1,103 +1,155 @@
+
+
 {% load static %}
 
+{% load static %}
+
+<div class="container mt-5 px-3">
+    <div class="row g-4 d-flex align-items-stretch">
 
 
-
-    <div class="container mt-5 px-3">
-    <div class="row g-4">
-{#        <!-- Section 1: Workout Templates -->#}
-{#        <div class="col-12 col-md-3 col-lg-3">#}
-{#            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">#}
-{#                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Workout Templates</h3>#}
-{#                <div class="section-content">#}
-{#                    <a href="#" class="btn btn-outline-primary btn-sm">View Templates</a>#}
-{##}
-{#                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Explore various workout templates to follow based on your fitness goals.</p>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-
-
-{#        <div class="col-12 col-md-3 col-lg-3">#}
-{#            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">#}
-{#                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Workout Generator</h3>#}
-{#                <div class="section-content">#}
-{#                        <a href="#" class="btn btn-outline-success btn-sm">Generate Workout</a>#}
-{##}
-{#                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Create a custom workout plan tailored to your goals.</p>#}
-{##}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-<div class="col-12 col-md-3 col-lg-3">
-            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">
+     {% if request.user.is_authenticated %}
+        <!-- Section: Training Log -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
                 <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Training Log</h3>
                 <div class="section-content">
-                                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'user_workouts' %}" class="btn btn-info btn-sm">View Training Log</a>
-                    {% else %}
-                        <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register </a>
-
-                    {% endif %}
+                        <a href="{% url 'user_workouts' %}" class="btn btn-info btn-sm">Training Log</a>
                     <p class="section-text" style="font-size: 0.85rem; color: #666;">Track your workout history and monitor your progress.</p>
-
-
                 </div>
-
-
             </div>
-
         </div>
 
-        <div class="col-12 col-md-3 col-lg-3">
-            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">
+        <!-- Section: Add New Workout -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
                 <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Add New Workout</h3>
                 <div class="section-content">
-
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'create-workout' %}" class="btn btn-success btn-sm">Add New Workout</a>
-                    {% else %}
-                        <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a>
-                    {% endif %}
+                        <a href="{% url 'create-workout' %}" class="btn btn-info btn-sm">New Workout</a>
                     <p class="section-text" style="font-size: 0.85rem; color: #666;">Input your workout details and submit them to track your progress.</p>
-
                 </div>
             </div>
         </div>
 
-        <!-- Section 4: Training Log -->
+        <!-- Section: Your Records -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Your Records</h3>
 
-
-<div class="col-12 col-md-3 col-lg-3">
-            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">
-                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Nurtrition log</h3>
                 <div class="section-content">
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'user_meal_list' %}" class="btn btn-outline-primary btn-sm">Nurtrition log</a>
-                          {% else %}
-                        <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a>
-                    {% endif %}
+                    <a href="{% url 'repmax' pk=request.user.pk %}" class="btn btn-info btn-sm">View Records</a>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Check your best lifts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Nutrition Log -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Nutrition Log</h3>
+                <div class="section-content">
+                    <a href="{% url 'user_meal_list' %}" class="btn btn-outline-primary btn-sm">Nutrition Log</a>
                     <p class="section-text" style="font-size: 0.85rem; color: #666;">Track your nutrition history...</p>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-3 col-lg-3">
-            <div class="section-header mb-3 p-3 border rounded" style="background-color: #f9f9f9;">
-                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Add new meal</h3>
+        <!-- Section: Add New Meal -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Add New Meal</h3>
                 <div class="section-content">
-                     {% if request.user.is_authenticated %}
-
-
-                    <a href="{% url 'create-meal' %}" class="btn btn-outline-primary btn-sm">Add meal</a>
-                     {% else %}
-                                           <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a>
-                    {% endif %}
-                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Add you meal to your nutrition log.</p>
+                    <a href="{% url 'create-meal' %}" class="btn btn-outline-primary btn-sm">Add Meal</a>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Add your meal to your nutrition log.</p>
                 </div>
             </div>
         </div>
 
+        <!-- Section: Public Records / Users -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Users and Public Records</h3>
+                <div class="section-content">
+                    <a href="{% url 'public_profiles' %}" class="btn btn-outline-primary btn-sm">View Users</a>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Explore various workout templates to follow based on your fitness goals.</p>
+                </div>
+            </div>
+        </div>
+<br>
+    {% else %}
+
+
+
+         <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Training Log</h3>
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Track your workout history and monitor your progress.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Add New Workout -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Add New Workout</h3>
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Input your workout details and submit them to track your progress.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Your Records -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Your Records</h3>
+
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Check your best lifts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Nutrition Log -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Nutrition Log</h3>
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Track your nutrition history...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Add New Meal -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Add New Meal</h3>
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">Add your meal to your nutrition log.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Public Records / Users -->
+        <div class="col-12 col-md-4">
+            <div class="section-header mb-3 p-3 border rounded d-flex flex-column" style="background-color: #f9f9f9; height: 100%;">
+                <h3 class="section-title mb-3" style="font-size: 1rem; font-weight: 600;">Users and Public Records</h3>
+                <div class="section-content">
+                            <p class="section-text" style="font-size: 0.85rem; color: #666;"><a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login or Register</a></p>
+                    <p class="section-text" style="font-size: 0.85rem; color: #666;">See other members records.</p>
+                </div>
+            </div>
+        </div>
+
+
+{% endif %}
     </div>
+<br>
 </div>
+
 

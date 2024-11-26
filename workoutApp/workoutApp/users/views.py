@@ -2,14 +2,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.db.models import Count
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
-from .forms import CustomLoginForm, CustomUserCreationForm, CustomUserChangeForm, UserProfileForm
-from .models import CustomUser
+from django.views.generic import CreateView, UpdateView, ListView
+from .forms import CustomLoginForm, CustomUserCreationForm, CustomUserChangeForm, UserProfileForm, ExerciseFilterForm
+from .models import CustomUser, RepMax, UserProfile
 from ..workouts.models import Workout
 
 
@@ -106,12 +106,10 @@ def staff_required(view_func):
 
 @staff_required
 def view_all_profile(request):
-    # Fetch all profiles
     users = CustomUser.objects.annotate(workout_count=Count('workouts'))
     # users = CustomUser.objects.all()
     context = {'users': users}
 
-    # Render a template to display all profiles
     return render(request, 'users/manage_all_profiles.html', context)
 
 
@@ -135,8 +133,60 @@ def delete_profile(request, pk):
         messages.error(request, "You cannot delete your own profile.")
         return redirect('all-profiles')
 
-    # Delete the user profile
     user.delete()
     messages.success(request, f"The profile of {user.username} has been deleted.")
 
     return redirect('all-profiles')
+
+
+
+
+class PublicUserProfileListView(ListView):
+    model = UserProfile
+    template_name = 'users/public_profiles_list.html'  # Adjust path if needed
+    context_object_name = 'user_profiles'
+    paginate_by = 5
+    def get_queryset(self):
+        return UserProfile.objects.filter(is_public=True)
+
+
+
+class RepMaxStatusView(LoginRequiredMixin, ListView):
+    model = RepMax
+    template_name = 'users/repmax_details.html'
+    context_object_name = 'repmaxes'
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
+        user_profile = get_object_or_404(UserProfile, user=user)
+
+        if user != self.request.user and not user_profile.is_public:
+            raise Http404("This profile is private.")
+
+
+        queryset = RepMax.objects.filter(user=user).order_by("-max_weight", "-reps")
+
+        form = ExerciseFilterForm(self.request.GET)
+        if form.is_valid():
+            category = form.cleaned_data.get('exercise_category')
+            exercise_type = form.cleaned_data.get('exercise_type')
+            exercise_name = form.cleaned_data.get('exercise_names')
+
+            if category:
+                queryset = queryset.filter(exercise__category=category)
+
+            if exercise_type:
+                queryset = queryset.filter(exercise__type=exercise_type)
+
+            if exercise_name:
+                queryset = queryset.filter(exercise__name=exercise_name)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['filter_form'] = ExerciseFilterForm(self.request.GET)
+
+        return context

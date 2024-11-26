@@ -189,28 +189,3 @@ class Exercise(models.Model):
 #     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
 #     day_of_week = models.CharField(max_length=9, choices=DayOfWeek.choices)
 #     order = models.PositiveIntegerField(default=0)
-
-
-# Todo
-# class Repmax(models.Model):
-#     user = models.ForeignKey(
-#         'users.CustomUser',
-#         on_delete=models.CASCADE,
-#         related_name='rep_maxes',
-#     )
-#
-#     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='rep_maxes')
-#     max_weight = models.DecimalField(
-#         decimal_places=2,
-#         max_digits=5,
-#         )
-#     reps = models.PositiveIntegerField()
-#     calculated_rm = models.DecimalField(
-#         decimal_places=2,
-#         max_digits=5,
-#         )
-#
-#     def save(self, *args, **kwargs):
-#         if self.max_weight and self.reps is not None:
-#             self.calculated_rm = self.max_weight * (1 + Decimal(0.0333) * self.reps)
-#         super().save(*args, **kwargs)

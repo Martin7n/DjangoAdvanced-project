@@ -1,0 +1,117 @@
+{% extends 'common/base_template.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+ <div class="container mt-5">
+     <!-- Filter form -->
+    <div class="mb-4">
+        <h4 class="mb-3 text-white">Filter RepMax Records</h4>
+        <form method="get" class="filter-form">
+              <div class="row">
+
+                <div class="col-md-3 col-sm-6 mb-2">
+                    {{ filter_form.exercise_category }}
+                </div>
+
+
+                <div class="col-md-3 col-sm-6 mb-2">
+                    {{ filter_form.exercise_type }}
+                </div>
+
+
+                <div class="col-md-3 col-sm-6 mb-2">
+                    {{ filter_form.exercise_names }}
+                </div>
+
+
+                <div class="col-md-3 col-sm-6 mb-2">
+                    <button type="submit" class="btn btn-primary btn-block">Apply Filters</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <h4 class="mb-4 text-white">RepMax Status</h4>
+
+
+    <div class="row">
+        {% for repmax in repmaxes %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">{{ repmax.exercise.name }}</h5>
+                            <div class="badge badge-info badge-box">{{ repmax.max_weight }} kg</div>
+                        </div>
+                        <p class="mb-1"><strong>Reps:</strong> {{ repmax.reps }}</p>
+                        <p class="mb-1"><strong>Date:</strong> {{ repmax.created_at }}</p>
+
+                         <h6 class="mt-3">Workouts with this RepMax:</h6>
+                        <ul class="list-group list-group-flush">
+                            {% for workout_set in repmax.exercise.workout_sets.all %}
+                                {% if workout_set.weight == repmax.max_weight and workout_set.reps == repmax.reps %}
+                                    <li class="list-group-item py-2">
+                                        <p class="mb-1"><strong>Workout Date:</strong> {{ workout_set.workout.workout_date }}</p>
+                                        <p class="mb-1"><strong>Workout Type:</strong> {{ workout_set.workout.workout_type }}</p>
+                                        <a href="{% url 'workout_detail' workout_set.workout.id %}" class="btn btn-link p-0">View Workout</a>
+                                    </li>
+                                {% endif %}
+                            {% empty %}
+                                <li class="list-group-item py-2">
+                                    <p class="mb-0">No workouts found for this exercise.</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p class="text-center">No rep max records found with the applied filters.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+  <div class="d-flex justify-content-center mt-4">
+                <nav>
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true">&laquo;</span>
+                            </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true">&raquo;</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                </nav>
+            </div>
+    </div>
+
+</div>
+{% endblock %}

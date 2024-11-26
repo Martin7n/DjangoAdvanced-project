@@ -2,8 +2,6 @@
 {%  load static %}
 {% load crispy_forms_filters %}
 
-
-
 {%  block content %}
 
      <section class="what_we_do_section layout_padding" style="background-color: #343a40; color: #f8f9fa;">
@@ -19,8 +17,11 @@
 
                                  <p><strong>Profile Picture:</strong><br> <img src="{% if user.profile.profile_picture  %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_profile.jpg' %}{% endif %}" alt="Profile Picture" width="100"></p>
                                   {{ profile_form|crispy }}
+
+
                                 <button type="submit" class="btn btn-primary">Save</button>
                               </form>
+
                     </hr>
                     </div>
                  </div>

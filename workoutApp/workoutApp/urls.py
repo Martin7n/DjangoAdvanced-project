@@ -1,11 +1,7 @@
 from django.contrib import admin
-from django.urls import path
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
-
-from workoutApp.users.views import custom_login_view
 from workoutApp.workouts.views import index, about, what_we_do, contacts, login
 
 urlpatterns = [

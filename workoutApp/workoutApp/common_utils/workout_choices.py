@@ -32,16 +32,6 @@ class WorkoutType(models.TextChoices):
     OTHER = "Other", "Other"
 
 
-class ExercisesChoices(models.TextChoices):
-    SQUAT = "Squat", "Squat"
-    PRESS = "Press", "Press"
-    DEADLIFT = "Deadlift", "Deadlift"
-    BENCH = "Bench", "Bench"
-    CURL = "Curl", "Curl"
-    SCULLCRUSHER = "Scullcrusher", "Scullcrusher"
-    PULL_UP = "Pull up", "Pull up"
-    DIP = "Dip", "Dip"
-
 class GoodDayChoice(models.TextChoices):
     EXCELLENT = "Excellent", "Excellent"
     ABOVE = "Above expectations", "Above expectations"
