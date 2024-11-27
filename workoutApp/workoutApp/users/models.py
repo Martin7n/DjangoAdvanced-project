@@ -1,8 +1,4 @@
 from django.contrib.auth import get_user_model
-
-# Create your models here.
-
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from workoutApp.common_utils.validators import validate_filesize
@@ -34,8 +30,12 @@ class CustomUser(AbstractUser):
             "unique": "Choose different e-mail, please.", }
     )
 
+    class Meta:
+        permissions = [
+            ('can_view_management_profile', 'Can view Management profile'),
+        ]
 
-#
+
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     profile_picture = models.ImageField(

@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.db.models import Count
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
@@ -10,6 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView
 from .forms import CustomLoginForm, CustomUserCreationForm, CustomUserChangeForm, UserProfileForm, ExerciseFilterForm
 from .models import CustomUser, RepMax, UserProfile
+from .permissions import IsStaffOrOwner
 from ..workouts.models import Workout
 
 
@@ -113,15 +115,22 @@ def view_all_profile(request):
     return render(request, 'users/manage_all_profiles.html', context)
 
 
-@staff_required
+# view_profile - included custom permission
 def view_profile(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
+
+    if not IsStaffOrOwner.has_permission(request.user, pk):
+        raise PermissionDenied("You do not have permission to view this profile.")
+
     workout_count = Workout.objects.filter(user=user).count()
-    profile_picture = user.profile.profile_picture
+    profile_picture = user.profile.profile_picture if user.profile else None
+
     context = {
         'user': user,
         'profile_picture': profile_picture,
-        'workout_count': workout_count}
+        'workout_count': workout_count,
+    }
+
     return render(request, 'users/manage_profile.html', context)
 
 
@@ -139,16 +148,14 @@ def delete_profile(request, pk):
     return redirect('all-profiles')
 
 
-
-
 class PublicUserProfileListView(ListView):
     model = UserProfile
     template_name = 'users/public_profiles_list.html'  # Adjust path if needed
     context_object_name = 'user_profiles'
     paginate_by = 5
+
     def get_queryset(self):
         return UserProfile.objects.filter(is_public=True)
-
 
 
 class RepMaxStatusView(LoginRequiredMixin, ListView):
@@ -163,7 +170,6 @@ class RepMaxStatusView(LoginRequiredMixin, ListView):
 
         if user != self.request.user and not user_profile.is_public:
             raise Http404("This profile is private.")
-
 
         queryset = RepMax.objects.filter(user=user).order_by("-max_weight", "-reps")
 

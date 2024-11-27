@@ -22,14 +22,12 @@
     {{ form|crispy }}
 
 
-    <!-- Submit final Button -->
-    <button type="submit" class="btn btn-success">
+     <button type="submit" class="btn btn-success">
       {% if object %}Save Changes{% else %}Create Exercise{% endif %}
     </button>
   </form>
 
-  <!-- Cancel Button  -->
-  <a href="{% url 'exercise-list' %}" class="btn btn-secondary">Cancel</a>
+   <a href="{% url 'exercise-list' %}" class="btn btn-secondary">Cancel</a>
     </h1>
 
       </div>
