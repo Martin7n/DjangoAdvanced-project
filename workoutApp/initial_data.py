@@ -23,10 +23,18 @@ def create_superuser():
     password = 'admin'
 
     if not User.objects.filter(username=username).exists():
+
         user = User.objects.create_superuser(username=username, password=password)
-        # Create a UserProfile for the superuser
-        UserProfile.objects.create(user=user)
-        print(f"Superuser '{username}' and UserProfile created successfully.")
+        try:
+
+            if not UserProfile.objects.filter(user=user).exists():
+
+                UserProfile.objects.create(user=user)
+                print(f"Superuser '{username}' and UserProfile created successfully.")
+            else:
+                print(f"UserProfile already exists for '{username}'.")
+        except Exception as e:
+            print(f"Error creating UserProfile: {e}")
     else:
         print(f"Superuser '{username}' already exists.")
 
