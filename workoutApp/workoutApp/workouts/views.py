@@ -130,7 +130,7 @@ class WorkoutDetailView(LoginRequiredMixin, DetailView):
 
 class WorkoutStatusView(LoginRequiredMixin, ListView):
     model = Workout
-    template_name = 'workouts/workout-status.html'  # Adjust the template name
+    template_name = 'workouts/workout-status.html'
     context_object_name = 'workouts'
     paginate_by = 6
     success_url = reverse_lazy('user_workouts')

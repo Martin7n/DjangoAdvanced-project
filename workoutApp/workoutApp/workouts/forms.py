@@ -47,14 +47,13 @@ class ExerciseForm(forms.ModelForm):
         if selected_exercise not in [x for x in Exercise.objects.all()]:
             raise forms.ValidationError('Please select a valid exercise.')
 
-        # No need for additional checks if using ModelChoiceField as it ensures the selected exercise exists
         return selected_exercise
 
 
 class WorkoutSetForm(forms.ModelForm):
     class Meta:
         model = WorkoutSet
-        fields = ['reps', 'weight', ]  # Only reps and weight
+        fields = ['reps', 'weight', ]
 
     reps = forms.IntegerField(
         min_value=1,

@@ -16,17 +16,12 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email')
-        # fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture', 'trainer')
 
 
 class CustomUserChangeForm(UserChangeForm):
-    # Fields you want to allow users to edit
     email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=20, required=False)
     last_name = forms.CharField(max_length=20, required=False)
-    # profile_picture = forms.ImageField(required=False)
-    # trainer = forms.BooleanField(required=False)
-
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={'placeholder': '(leave blank to keep current)',
@@ -75,10 +70,9 @@ class ExerciseFilterForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Get the user passed in kwargs
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
         if user:
-            # Get exercises that are related to this user's RepMaxes
             exercises_for_user = Exercise.objects.filter(repmax__user=user).distinct()
             self.fields['exercise_names'].queryset = exercises_for_user

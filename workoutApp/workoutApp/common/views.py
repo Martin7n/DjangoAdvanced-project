@@ -16,8 +16,3 @@ def contacts(request):
 
 def index(request):
     return render(request, 'common/index.html')
-
-
-def login(request):
-
-    return render(request, "common/login.html")

@@ -15,6 +15,4 @@ class MealAdmin(admin.ModelAdmin):
         "type",
         "user",
     ]
-    list_filter = ["user","type", "calories",]
-
-
+    list_filter = ["user", "type", "calories", ]
