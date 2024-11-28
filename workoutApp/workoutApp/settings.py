@@ -41,7 +41,8 @@ MY_ADD_APPS = ['crispy_forms',
                "crispy_bootstrap4",
                'workoutApp.workouts.apps.WorkoutsConfig',
                'workoutApp.nutrition.apps.NutritionConfig',
-               'workoutApp.users.apps.UsersConfig'
+               'workoutApp.users.apps.UsersConfig',
+               'workoutApp.common.apps.CommonConfig',
                ]
 
 INSTALLED_APPS = [
@@ -135,7 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "staticfiles",]
+STATICFILES_DIRS = [BASE_DIR / "staticfiles", ]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'users.CustomUser'

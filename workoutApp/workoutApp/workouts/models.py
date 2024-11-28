@@ -88,7 +88,6 @@ class WorkoutTemplate(WorkoutBase):
         blank=True,
         null=True,
         )
-    # frequency_per_week = models.PositiveIntegerField(default=1)
 
 
 class ExerciseCategory(models.Model):
@@ -164,28 +163,5 @@ class Exercise(models.Model):
         max_length=100,
         choices=ExrxType.choices)
 
-    # xrx_instructions = models.ForeignKey("ExrxInstructions", on_delete=models.CASCADE)
-
     def __str__(self):
         return self.name
-
-
-# class WeeklySchedule(models.Model):
-#     user = models.ForeignKey(
-#         'users.CustomUser',
-#         on_delete=models.CASCADE,
-#         related_name='weekly_schedules',
-#         )
-#     week_start_date = models.DateField()
-#     week_end_date = models.DateField()
-#     notes = models.TextField(
-#         blank=True,
-#         null=True,
-#         )
-#
-#
-# class WeeklyWorkout(models.Model):
-#     schedule = models.ForeignKey(WeeklySchedule, on_delete=models.CASCADE, related_name='weekly_workouts')
-#     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
-#     day_of_week = models.CharField(max_length=9, choices=DayOfWeek.choices)
-#     order = models.PositiveIntegerField(default=0)
