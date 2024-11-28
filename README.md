@@ -15,10 +15,11 @@ In order to achieve that there are some custom logic behind for creating appropr
 2. Automaticly create and update workout data(repetition maxes) related to user.
 4. Creating a Meals as part of the user nutrition plan.
 5. User create/auth and dynamic access and views of the website,
-6. Staff/managment specific access - views and functionalities.(view, delete users)
+6. Staff/managment specific access - views and functionalities.(view, delete users).
 7. Custom permission for user managment view(view only).
 8. Views of personal training data(see 2.)
-9. Views of  training data(see 2.) for public users.
+9. Views of training data(see 2.) for public users.
+
 
 ##### Detailed models description
 #### Workout app models
@@ -38,7 +39,9 @@ Additional usage of  is_staff permissions is implemented as extended managment a
 - **UserProfile model** - functionalities for picture upload and future extension. Access to the respective views and funtionalities of the website.
 Registered/authenticated users have different view of the website.
 - **RepMax model** - contains user record via relation with WorkoutSet created with signals.
-
+#### Common app
+- No models. Views with static information/content.
+  
 #### After running migrations you may start the initial_data.py(main project folder) in order to create 1st user and populate some useful objects/information.
 
 Kind regards,
