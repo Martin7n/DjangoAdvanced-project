@@ -166,7 +166,7 @@ class WorkoutStatusView(LoginRequiredMixin, ListView):
 
 class ExerciseListView(ListView):
     model = Exercise
-    template_name = 'workouts/exercise_list.html'  # Adjust the template path as needed
+    template_name = 'workouts/exercise_list.html'
     context_object_name = 'exercises'
 
     def get_queryset(self):
@@ -186,8 +186,7 @@ class ExerciseCreateView(UserPassesTestMixin, CreateView):
         return HttpResponseForbidden("You do not have permission to that function")
 
     def form_valid(self, form):
-        # Optionally, set additional fields here
-        form.instance.user = self.request.user  # If you want to assign the current user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 

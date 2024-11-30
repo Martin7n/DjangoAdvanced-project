@@ -16,7 +16,7 @@ class MealCreateForm(forms.ModelForm):
             'class': 'calorie-slider'
         }),
         label='Calories',
-        help_text='Use the slider to select a calorie value between 200 and 2000 in steps of 200.',
+        help_text='Use the slider to select a calorie value between 200 and 3000 in steps of 200.',
     )
 
     class Meta:
