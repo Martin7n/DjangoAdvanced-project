@@ -18,7 +18,7 @@ In order to achieve that there are some custom logic behind for creating appropr
 6. Staff/managment specific access - views and functionalities.(view, delete users).
 7. Views of personal training data(see 2.)
 8. Views of training data(see 2.) for public users.
-Additional:
+- Additional:
 9. Custom permission for user managment view(view only).
 10. Tests of some views, forms, models.
 
