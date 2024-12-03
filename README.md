@@ -43,7 +43,7 @@ Additional usage of  is_staff permissions is implemented as extended managment a
 Registered/authenticated users have different view of the website.
 - **RepMax model** - contains user record via relation with WorkoutSet created with signals.
 #### Complexes app
-- Rest feature for short workout complexes(indipendent from Workout) - list/create/generate random.
+- **Complex** - related ot Exercise. Rest feature for short workout complexes(indipendent from Workout) - list/create/generate random.
 #### Common app
 - No models. Views with static information/content.
   
