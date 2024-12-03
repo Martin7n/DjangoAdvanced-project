@@ -18,9 +18,10 @@ In order to achieve that there are some custom logic behind for creating appropr
 6. Staff/managment specific access - views and functionalities.(view, delete users).
 7. Views of personal training data(see 2.)
 8. Views of training data(see 2.) for public users.
-- Additional:
-9. Custom permission for user managment view(view only).
-10. Tests of some views, forms, models.
+#### Additional:
+1. Custom permission for user managment view(view only).
+2. Creating short workout complexes, incl.random generated. (rest @ /complexes/list,  /complexes/create, /complexes/generate)
+3. Tests of some views, forms, models.
 
 
 ##### Detailed models description
@@ -35,12 +36,14 @@ Requires some configuration/data population.
 - **Meal** model
 Main logic - provides the creation and loging the meals for the users.
 Additonal simple funtionalities for preview and delete meals.
-#### Users app
+#### Accounts app
 - **CustomUser**  login and authorization logic as AbstractUser inheritant.
 Additional usage of  is_staff permissions is implemented as extended managment and rights.
 - **UserProfile model** - functionalities for picture upload and future extension. Access to the respective views and funtionalities of the website.
 Registered/authenticated users have different view of the website.
 - **RepMax model** - contains user record via relation with WorkoutSet created with signals.
+#### Complexes app
+- **Complex** - related to Exercise. Rest feature for short workout complexes(indipendent from Workout) - list/create/generate random.
 #### Common app
 - No models. Views with static information/content.
   
