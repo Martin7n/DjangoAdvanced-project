@@ -11,10 +11,10 @@ from django.utils.translation import gettext_lazy as _
 from .models import Workout
 
 
-# Custom filter class
+
 class IsEmptyFilter(admin.SimpleListFilter):
-    title = _('Is Empty')  # Label for the filter
-    parameter_name = 'is_empty'  # URL query parameter for the filter
+    title = _('Is Empty')
+    parameter_name = 'is_empty'
 
     def lookups(self, request, model_admin):
         # Define filter options
@@ -24,7 +24,6 @@ class IsEmptyFilter(admin.SimpleListFilter):
         )
 
     def queryset(self, request, queryset):
-        # Filter the queryset based on the selected filter option
         value = self.value()
         if value == 'True':
             return queryset.filter(sets__isnull=True)  # No related sets
@@ -33,7 +32,7 @@ class IsEmptyFilter(admin.SimpleListFilter):
         return queryset  # No filter applied
 
 
-# Register the Workout model with the custom admin
+
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
     list_display = ['user', "get_exercises", "get_all_sets_reps", "get_total_volume", "is_empty"]
@@ -42,10 +41,8 @@ class WorkoutAdmin(admin.ModelAdmin):
 
     def is_empty(self, obj):
         list = [p.exercise for p in obj.sets.all()]
-        return not bool(list)  # Return True if list is empty, else False
-
-    is_empty.boolean = True  # Display as a boolean icon (tick or cross)
-
+        return not bool(list)
+    is_empty.boolean = True
 
     def get_exercises(self, obj):
         return  ", ".join([p.exercise.name for p in obj.sets.all()])

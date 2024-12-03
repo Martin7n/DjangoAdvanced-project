@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.test import TestCase
-from workoutApp.users.models import CustomUser
+from workoutApp.accounts.models import CustomUser
 
 
 class ExerciseCreateViewTest(TestCase):

@@ -1,8 +1,8 @@
-# tests/users/test_models.py
+# tests/accounts/test_models.py
 
 from django.test import TestCase
 
-from workoutApp.users.models import CustomUser, UserProfile
+from workoutApp.accounts.models import CustomUser, UserProfile
 
 
 class UserProfileModelTest(TestCase):

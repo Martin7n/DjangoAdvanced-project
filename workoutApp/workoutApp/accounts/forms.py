@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from workoutApp.common_utils.workout_choices import ExrxCategory, ExrxType
-from workoutApp.users.models import CustomUser, UserProfile
+from workoutApp.accounts.models import CustomUser, UserProfile
 from workoutApp.workouts.models import Exercise
 
 

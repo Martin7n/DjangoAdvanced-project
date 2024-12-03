@@ -54,7 +54,7 @@ class UserProfile(models.Model):
 
 class RepMax(models.Model):
     user = models.ForeignKey(
-        'users.CustomUser',
+        'accounts.CustomUser',
         on_delete=models.CASCADE,
         related_name='rep_maxes'
     )

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="workout_app@localhost" uuid="ee2a87de-108a-4c7b-b9af-3a49fbe5d0d5">
+    <data-source source="LOCAL" name="workoutapp@localhost" uuid="fe71872a-fca2-4df7-b2f7-a3e42f891d3b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/workout_app</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/workoutapp</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

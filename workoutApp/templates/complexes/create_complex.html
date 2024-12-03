@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Complex</title>
+</head>
+<body>
+    <h1>Create a New Complex</h1>
+    <form method="POST" action="{% url 'complex-create' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="type">Type:</label>
+        <select name="type" id="type" required>
+            <option value="AMRAP">AMRAP</option>
+            <option value="Death By">Death By</option>
+            <option value="EMOM">EMOM</option>
+            <option value="For time">For time</option>
+        </select><br><br>
+
+        <label for="loading">Loading:</label>
+        <select name="loading" id="loading" required>
+            <option value="BW">BW</option>
+            <option value="Half BW">Half BW</option>
+            <option value=".75 BW">.75 BW</option>
+        </select><br><br>
+
+        <label for="exercises">Exercises (comma separated IDs):</label>
+        <input type="text" id="exercises" name="exercises" required><br><br>
+
+        <button type="submit">Create Complex</button>
+    </form>
+</body>
+</html>

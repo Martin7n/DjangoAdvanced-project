@@ -1,5 +1,5 @@
 from django.shortcuts import render
-# 'static' non...functional views for non-logged users
+# 'static' non...functional views for non-logged accounts
 
 
 def about(request):

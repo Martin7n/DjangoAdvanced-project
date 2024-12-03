@@ -58,3 +58,13 @@ class MealChoice(models.TextChoices):
     OTHER = "Other", "Other"
 
 
+class ComplexType(models.TextChoices):
+    AMRAP = ("AMRAP", "AMRAP")
+    DBY = ("Death By", "Death By")
+    EMOM = ("EMOM", "EMOM")
+    FT = ("For time", "For time")
+
+class Load(models.TextChoices):
+    BW = ("BW", "BW")
+    HBW = ("Half BW", "Half BW")
+    QU = (".75 BW", ".75 BW")

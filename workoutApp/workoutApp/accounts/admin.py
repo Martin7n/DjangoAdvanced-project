@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from workoutApp.users.models import CustomUser
+from workoutApp.accounts.models import CustomUser
 
 
 @admin.register(CustomUser)

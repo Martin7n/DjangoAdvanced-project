@@ -28,6 +28,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DATABASE_NAME = os.environ['DATABASE_NAME']
 DATABASE_USER = os.environ['DATABASE_USER']
 DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
+# API_SECRET_KEY = os.getenv('API_SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,8 +43,9 @@ MY_ADD_APPS = ['crispy_forms',
                "crispy_bootstrap4",
                'workoutApp.workouts.apps.WorkoutsConfig',
                'workoutApp.nutrition.apps.NutritionConfig',
-               'workoutApp.users.apps.UsersConfig',
+               'workoutApp.accounts.apps.UsersConfig',
                'workoutApp.common.apps.CommonConfig',
+               'workoutApp.complexes.apps.ComplexesConfig',
                ]
 
 INSTALLED_APPS = [
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ] + MY_ADD_APPS
 
 MIDDLEWARE = [
@@ -139,11 +143,21 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "staticfiles", ]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_URL = '/users/login/'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGIN_URL = '/accounts/login/'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_THROTTLE_CLASSES': [
+#         'rest_framework.throttling.UserRateThrottle',
+#         'rest_framework.throttling.AnonRateThrottle',
+#     ],
+#     'DEFAULT_THROTTLE_RATES': {
+#         'user': '10/minute',
+#         'anon': '10/minute',
+#     },
+# }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

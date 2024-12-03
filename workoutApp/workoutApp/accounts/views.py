@@ -109,8 +109,8 @@ def staff_required(view_func):
 @staff_required
 def view_all_profile(request):
     users = CustomUser.objects.annotate(workout_count=Count('workouts'))
-    # users = CustomUser.objects.all()
-    context = {'users': users}
+    # accounts = CustomUser.objects.all()
+    context = {'accounts': users}
 
     return render(request, 'users/manage_all_profiles.html', context)
 

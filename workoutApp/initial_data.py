@@ -12,7 +12,7 @@ django.setup()
 from django.contrib.auth import get_user_model
 
 from workoutApp.common_utils.workout_choices import ExrxCategory, ExrxType, WorkoutType
-from workoutApp.users.models import UserProfile
+from workoutApp.accounts.models import UserProfile
 from workoutApp.workouts.models import Exercise, Workout, WorkoutSet
 
 

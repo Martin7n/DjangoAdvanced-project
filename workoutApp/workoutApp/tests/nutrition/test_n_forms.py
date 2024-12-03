@@ -1,9 +1,8 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 from datetime import date
 
 from workoutApp.nutrition.forms import MealCreateForm
-from workoutApp.users.models import CustomUser
+from workoutApp.accounts.models import CustomUser
 
 
 class MealCreateFormTest(TestCase):

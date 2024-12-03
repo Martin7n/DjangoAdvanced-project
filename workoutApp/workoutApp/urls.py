@@ -9,7 +9,8 @@ urlpatterns = [
     path('', include("workoutApp.common.urls")),
     path('workout/', include("workoutApp.workouts.urls")),
     path('nutrition/', include("workoutApp.nutrition.urls")),
-    path('users/', include("workoutApp.users.urls")),
+    path('accounts/', include("workoutApp.accounts.urls")),
+    path('complexes/', include("workoutApp.complexes.urls")),
 ]
 
 

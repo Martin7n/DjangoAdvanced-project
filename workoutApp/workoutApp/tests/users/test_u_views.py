@@ -1,9 +1,9 @@
-# tests/users/test_views.py
+# tests/accounts/test_views.py
 
 from django.test import TestCase
 from django.urls import reverse
 
-from workoutApp.users.models import CustomUser
+from workoutApp.accounts.models import CustomUser
 #
 class UserProfileViewTest(TestCase):
     def setUp(self):
@@ -28,7 +28,7 @@ class UserProfileViewTest(TestCase):
     def test_view_profile_non_logged_user(self):
         self.client.logout()
         response = self.client.get(reverse('user-profile'))
-        self.assertRedirects(response, f'/users/login/?next={reverse("user-profile")}')
+        self.assertRedirects(response, f'/accounts/login/?next={reverse("user-profile")}')
 
 
     # def test_view_all_public_profile(self):
@@ -53,6 +53,6 @@ class DeleteProfileViewTest(TestCase):
         self.client.login(username='user', password='@@12345')
         response = self.client.get(reverse('delete-profile', args=[self.staff_user.pk]))
         self.assertEqual(CustomUser.objects.filter(username='user').count(), 1)
-        self.assertRedirects(response, f'/users/login/?next={reverse("delete-profile", args=[self.staff_user.pk])}')
+        self.assertRedirects(response, f'/accounts/login/?next={reverse("delete-profile", args=[self.staff_user.pk])}')
 
 

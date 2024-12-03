@@ -26,7 +26,7 @@ class Meal(models.Model):
         choices=MealChoice.choices,
     )
     user = models.ForeignKey(
-        'users.CustomUser',
+        'accounts.CustomUser',
         on_delete=models.CASCADE,
         related_name='meals',
     )
