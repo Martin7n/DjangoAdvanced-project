@@ -18,10 +18,10 @@ In order to achieve that there are some custom logic behind for creating appropr
 6. Staff/managment specific access - views and functionalities.(view, delete users).
 7. Views of personal training data(see 2.)
 8. Views of training data(see 2.) for public users.
-- Additional:
-9. Custom permission for user managment view(view only).
-10. Creating short workout complexes, incl.random generated. (rest @ /complexes/list,  /complexes/create, /complexes/generate)
-11. Tests of some views, forms, models.
+   Additional:
+10. Custom permission for user managment view(view only).
+11. Creating short workout complexes, incl.random generated. (rest @ /complexes/list,  /complexes/create, /complexes/generate)
+12. Tests of some views, forms, models.
 
 
 ##### Detailed models description
