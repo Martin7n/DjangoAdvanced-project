@@ -11,6 +11,7 @@ class ComplexesAdmin(admin.ModelAdmin):
         "loading",
         'get_exercises',
     ]
+    list_filter = ['type', 'loading']
 
     def get_exercises(self, obj):
         exercises = obj.exercises.all()
