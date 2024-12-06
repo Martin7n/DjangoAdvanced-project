@@ -1,4 +1,4 @@
-# DjangoAdvanced-project
+# DjangoAdvanced-project: WorkoutApp / NoCardio site.
  Django Web Project @ Softuni
 
 Please, see:
