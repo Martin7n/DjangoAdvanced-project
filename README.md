@@ -1,7 +1,10 @@
-# DjangoAdvanced-project
+# DjangoAdvanced-project: WorkoutApp / NoCardio site.
  Django Web Project @ Softuni
 
+Please, see:
+[settings and .env needed](https://docs.google.com/document/d/1C2GgEov5HzdLA1qkUVFSqrC__59-1rurWgLa7watQxQ/edit?usp=sharing "settings and .env needed")
 #### After running migrations you may start the initial_data.py(main project folder) in order to create 1st user and populate some useful objects/information.
+
 
 
 ### Project description
