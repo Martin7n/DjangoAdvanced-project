@@ -38,7 +38,7 @@ class CustomUserChangeForm(UserChangeForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['profile_picture', ]
+        fields = ['profile_picture', "is_public"]
 
         profile_picture = forms.ImageField(required=False)
 
