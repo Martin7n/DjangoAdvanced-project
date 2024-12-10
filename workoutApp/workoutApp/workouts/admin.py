@@ -72,24 +72,6 @@ class ExerciseAdmin(admin.ModelAdmin):
 
     ]
 
-    # def get_created(self, obj):
-    #     return obj.workout.created_at.strftime('%Y-%m-%d')
-
-    # def get_info(self, obj):
-    #     return  f'{obj.type} '
-
-    # def get_author(self, obj):
-    #     return obj.author
-
-
-# @admin.register(ExerciseCategory)
-# class ExerciseCategoryAdmin(admin.ModelAdmin):
-#     list_display = ['category']
-#
-# @admin.register(ExerciseType)
-# class ExerciseTypeAdmin(admin.ModelAdmin):
-#     list_display = ['type', 'category']
-
 
 
 @admin.register(WorkoutSet)
@@ -102,24 +84,3 @@ class WorkoutSetAdmin(admin.ModelAdmin):
         "order",
     ]
 
-
-
-
-# @admin.register(SetExercise)
-# class SetAdmin(admin.ModelAdmin):
-#     list_display = [
-#         "exercise",
-#         "reps",
-#         "weight",
-#         "order",
-#
-#     ]
-
-
-    # Workout
-    # WorkoutTemplate
-    # ExerciseCategory
-    # ExerciseType
-    # Exercise
-    # Setw
-    #

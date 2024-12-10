@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.db.models import Max
 
+
 class AutoIncrementOrder(models.Model):
     order = models.PositiveIntegerField(editable=False)
 
@@ -16,9 +17,7 @@ class AutoIncrementOrder(models.Model):
         super().save(*args, **kwargs)
 
     def get_filter_criteria(self):
-         raise NotImplementedError("get_filter ERROR/common")
-
-
+        raise NotImplementedError("get_filter ERROR/common")
 
 
 class DisableFieldsMixin(forms.Form):

@@ -12,7 +12,7 @@ from ..workouts.models import Exercise
 
 
 @api_view(['GET', 'POST'])
-def getData(request):
+def get_data(request):
     app = Complex.objects.all()
     serializer = DataSerializer(app, many=True)
     # return Response(serializer.data)
@@ -24,6 +24,7 @@ class ComplexListView(APIView):
         complexes = Complex.objects.all()
         serializer = ComplexSerializer(complexes, many=True)
         return Response(serializer.data)
+
 
 class ComplexCreateView(APIView):
     def post(self, request):
@@ -60,7 +61,6 @@ class ComplexGenerateView(APIView):
         exercises = Exercise.objects.distinct('type')
         complex_name = request.data.get('name', 'Generated Complex')
 
-
         # if complex_type:
         #     exercises = exercises.filter(type=complex_type)
         #
@@ -71,7 +71,6 @@ class ComplexGenerateView(APIView):
             return Response({"detail": "Not enough exercises available."}, status=status.HTTP_400_BAD_REQUEST)
         #
         selected_exercises = random.sample(list(exercises), 3)
-
 
         complex_instance = Complex.objects.create(
             name=complex_name,
